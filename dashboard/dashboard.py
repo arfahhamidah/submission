@@ -115,7 +115,7 @@ ax.set_xticklabels(hour_counts.index, rotation=0)
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
-st.text("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pada jam 17.00 dan paling sedikit pada jam 04.00")
+st.markdown("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pada jam 17.00 dan paling sedikit pada jam 04.00")
 
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
@@ -149,7 +149,7 @@ ax.legend()
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
-st.text("Berdasarkan gambar di atas, terlihat bahwa season berpengaruh terhadap jumlah penyewa. Penyewa paling banyak yaitu pada musim gugur(fall), lalu pada musim panas(summer), musim dingin (winter), dan paling sedikit pada musim semi (spring)")
+st.markdown("Berdasarkan gambar di atas, terlihat bahwa season berpengaruh terhadap jumlah penyewa. Penyewa paling banyak yaitu pada musim gugur(fall), lalu pada musim panas(summer), musim dingin (winter), dan paling sedikit pada musim semi (spring)")
 
 #Caption
 st.caption('Copyright (c) Arfah Hamidah 2024')
