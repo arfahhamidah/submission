@@ -97,7 +97,7 @@ ax.pie(data, labels=labels, autopct='%1.1f%%')
 
 # Menampilkan grafik di Streamlit
 st.pyplot(fig)
-st.text("Berdasarkan gaambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah 81,2% dan penyewa casual adalah 18,8%")
+st.markdown("Berdasarkan gaambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah \n 81,2% dan penyewa casual adalah 18,8%")
 
 st.subheader("Jam Penyewaan sepeda paling tinggi")
 
