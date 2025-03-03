@@ -104,9 +104,13 @@ st.subheader("Jam Penyewaan sepeda paling tinggi")
 # Menghitung total penyewaan berdasarkan jam
 hour_counts = hour_df.groupby('hr')['cnt'].sum()
 
+
 # Membuat barplot menggunakan Seaborn
+max_hour = hour_counts.idxmax()
+min_hour = hour_counts.idxmin()
+colors = ['#004c6d' if hour in [max_hour, min_hour] else '#c1e7ff' for hour in hour_counts.index] 
 fig, ax = plt.subplots(figsize=(12, 6))
-sns.barplot(x=hour_counts.index, y=hour_counts.values, ax=ax)
+sns.barplot(x=hour_counts.index, y=hour_counts.values, ax=ax, palette=colors)
 ax.set_title('Total Penyewaan berdasarkan Jam')
 ax.set_xlabel('Jam dalam Sehari')
 ax.set_ylabel('Total Penyewaan')
@@ -130,7 +134,7 @@ ax.bar(
     seasonal["season"],
     seasonal["registered"],
     label="Registered",
-    color="tab:orange"
+    color="tab:#ff6361"
 )
 
 # Bar plot untuk "Casual"
@@ -138,7 +142,7 @@ ax.bar(
     seasonal["season"],
     seasonal["casual"],
     label="Casual",
-    color="tab:blue"
+    color="tab:#ffa600"
 )
 
 # Menambahkan judul dan label
