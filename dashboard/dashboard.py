@@ -53,18 +53,26 @@ with st.sidebar:
     )
 
 try:
+    # Cek apakah user memilih rentang tanggal yang valid
     if isinstance(selected_dates, tuple) and len(selected_dates) == 2:
         start_date, end_date = selected_dates
-    else:
-        raise ValueError("Rentang tanggal tidak valid.")
-    
-    # Filter data berdasarkan rentang waktu
-    main_df = day_df[(day_df["dteday"].dt.date >= start_date) & 
-                     (day_df["dteday"].dt.date <= end_date)]
 
-except Exception as e:
-    st.warning(f"Terjadi kesalahan dalam pemilihan tanggal: {e}")
-    main_df = day_df  # Menampilkan semua data jika ada error
+        # Jika tanggal awal lebih besar dari tanggal akhir, tampilkan warning
+        if start_date > end_date:
+            raise ValueError("Tanggal awal tidak boleh lebih besar dari tanggal akhir!")
+
+        # Filter data berdasarkan rentang waktu
+        main_df = day_df[(day_df["dteday"].dt.date >= start_date) & 
+                         (day_df["dteday"].dt.date <= end_date)]
+    
+    else:
+        raise ValueError("Rentang tanggal tidak valid!")
+
+except ValueError as e:
+    # Jika terjadi error, tampilkan warning dan kembalikan ke data default
+    st.warning(f"⚠️ {str(e)} Menampilkan data default.")
+    start_date, end_date = min_date, max_date
+    main_df = day_df
 
 # Data farme
 count_df = create_count_df(main_df)
