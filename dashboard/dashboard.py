@@ -140,7 +140,8 @@ ax.set_xticklabels(hour_counts.index, rotation=0)
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
-st.markdown("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pada jam 17.00 dan paling sedikit pada jam 04.00")
+# Menampilkan informasi berdasarkan hasil perhitungan yang benar
+st.markdown(f"Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi terjadi pada jam **{max_hour}:00** dan paling sedikit pada jam **{min_hour}:00**.")
 
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
