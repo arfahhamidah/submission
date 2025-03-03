@@ -102,8 +102,8 @@ with col3:
 
 st.subheader("Persentase penyewaan yang berasal dari pengguna terdaftar dibandingkan dengan pengguna kasual")
 # Menghitung jumlah pendaftar Kasual dan Terdaftar
-casual_counts = sum(day_df['casual'])
-registered_counts = sum(day_df['registered'])
+casual_counts = sum(casual_df['casual'])
+registered_counts = sum(registered_df['registered'])
 
 # Definisikan data untuk pie chart
 data = [casual_counts, registered_counts]
