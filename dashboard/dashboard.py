@@ -36,10 +36,9 @@ def create_seasonal_df(day_df):
 #     return hour_counts_df
 
 # Membuat komponen filter
-min_date = pd.to_datetime(day_df['dteday']).dt.date.min()
-max_date = pd.to_datetime(day_df['dteday']).dt.date.max()
-
-
+day_df["dteday"] = pd.to_datetime(day_df["dteday"])
+min_date = day_df['dteday'].dt.date.min()
+max_date = day_df['dteday'].dt.date.max()
  
 with st.sidebar:
     # Menambahkan logo perusahaan
