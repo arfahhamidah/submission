@@ -183,7 +183,7 @@ if not seasonal_df.empty:
         max_season = seasonal.loc[(seasonal["registered"] + seasonal["casual"]).idxmax(), "season"]
 
         # Pastikan season ada di dictionary sebelum mengaksesnya
-        max_season_name = season_dict.get(max_season, "Tidak diketahui")
+        max_season_name = season_dict.get(max_season)
 
         # Menampilkan hasil dalam Streamlit
         st.markdown(f"Berdasarkan gambar di atas, terlihat bahwa musim berpengaruh terhadap jumlah penyewa. "
@@ -192,6 +192,6 @@ if not seasonal_df.empty:
         st.warning("Data tidak tersedia untuk perhitungan seasonal setelah filtering.")
 else:
     st.warning("Tidak ada data dalam rentang waktu yang dipilih.")
-    
+
 #Caption
 st.caption('Copyright (c) Arfah Hamidah 2024')
