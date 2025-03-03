@@ -147,7 +147,7 @@ st.markdown(f"Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi terjadi
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
 # Mengelompokkan data berdasarkan season dan registered/casual
-seasonal = day_df.groupby("season")[["registered", "casual"]].sum().reset_index()
+seasonal = seasonal_df.groupby("season")[["registered", "casual"]].sum().reset_index()
 
 # Membuat bar plot
 fig, ax = plt.subplots(figsize=(10, 5))
