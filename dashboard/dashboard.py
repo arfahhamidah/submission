@@ -125,8 +125,6 @@ st.subheader("Jam Penyewaan sepeda paling tinggi")
 
 # Menghitung total penyewaan berdasarkan jam
 hour_counts = hour_df[hour_df["dteday"].between(str(start_date), str(end_date))].groupby('hr')['cnt'].sum()
-hour_counts = hour_df.groupby('hr')['cnt'].sum()
-
 
 # Membuat barplot menggunakan Seaborn
 max_hour = hour_counts.idxmax()
@@ -147,7 +145,7 @@ st.markdown("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pa
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
 # Mengelompokkan data berdasarkan season dan registered/casual
-seasonal = day_df.groupby("season")[["registered", "casual"]].sum().reset_index()
+seasonal = day_df[day_df["dteday"].between(str(start_date), str(end_date))].groupby("season")[["registered", "casual"]].sum().reset_index()
 
 # Membuat bar plot
 fig, ax = plt.subplots(figsize=(10, 5))
