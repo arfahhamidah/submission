@@ -93,11 +93,11 @@ labels = ["Casual", "Registered"]
 
 # Membuat Pie Chart menggunakan Matplotlib
 fig, ax = plt.subplots()
-ax.pie(data, labels=labels, autopct='%1.1f%%')
+ax.pie(data, labels=labels, autopct='%1.1f%%', colors=['blue', 'green'])
 
 # Menampilkan grafik di Streamlit
 st.pyplot(fig)
-st.markdown("Berdasarkan gaambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah \n 81,2% dan penyewa casual adalah 18,8%")
+st.markdown("Berdasarkan gambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah \n 81,2% dan penyewa casual adalah 18,8%")
 
 st.subheader("Jam Penyewaan sepeda paling tinggi")
 
