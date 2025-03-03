@@ -46,15 +46,29 @@ with st.sidebar:
     st.image("https://png.pngtree.com/png-clipart/20230807/original/pngtree-vector-illustration-of-a-bicycle-rental-logo-on-a-white-background-vector-picture-image_10130399.png")
     
     # Mengambil start_date & end_date dari date_input
-    start_date, end_date = st.date_input(
+    selected_dates = st.date_input(
         label='Rentang Waktu',
         min_value=min_date,
         max_value=max_date,
         value=[min_date, max_date]
     )
 
-main_df = day_df[(day_df["dteday"] >= str(start_date)) & 
-                (day_df["dteday"] <= str(end_date))]
+try:
+    if isinstance(selected_dates, tuple) and len(selected_dates) == 2:
+        start_date, end_date = selected_dates
+    else:
+        raise ValueError("Rentang tanggal tidak valid.")
+    
+    # Filter data berdasarkan rentang waktu
+    main_df = day_df[(day_df["dteday"].dt.date >= start_date) & 
+                     (day_df["dteday"].dt.date <= end_date)]
+    
+    st.write("Data setelah difilter berdasarkan tanggal:")
+    st.dataframe(main_df)
+
+except Exception as e:
+    st.warning(f"Terjadi kesalahan dalam pemilihan tanggal: {e}")
+    main_df = day_df  # Menampilkan semua data jika ada error
 
 # Data farme
 count_df = create_count_df(main_df)
