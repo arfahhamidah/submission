@@ -100,7 +100,7 @@ with col3:
     st.metric('Total User', value= daily_total)
 
 
-st.subheader("persentase penyewaan yang berasal dari pengguna terdaftar dibandingkan dengan pengguna kasual")
+st.subheader("Persentase penyewaan yang berasal dari pengguna terdaftar dibandingkan dengan pengguna kasual")
 # Menghitung jumlah pendaftar Kasual dan Terdaftar
 casual_counts = sum(day_df['casual'])
 registered_counts = sum(day_df['registered'])
@@ -108,14 +108,18 @@ registered_counts = sum(day_df['registered'])
 # Definisikan data untuk pie chart
 data = [casual_counts, registered_counts]
 labels = ["Casual", "Registered"]
+colors=['#ff6361', '#ffa600']
 
 # Membuat Pie Chart menggunakan Matplotlib
 fig, ax = plt.subplots()
-ax.pie(data, labels=labels, autopct='%1.1f%%', colors=['#ff6361', '#ffa600'])
+ax.pie(data, labels=labels, autopct='%1.1f%%', colors=colors)
+ax.set_title("Distribusi Penyewaan sepeda")
+ax.legend(labels, loc="best")
 
 # Menampilkan grafik di Streamlit
 st.pyplot(fig)
-st.markdown("Berdasarkan gambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah \n 81,2% dan penyewa casual adalah 18,8%")
+percentages = [f"{(x / sum(data)) * 100:.1f}%" for x in data]
+st.markdown("Berdasarkan gambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah **{percentages[1]}** dan penyewa casual adalah **{percentages[0]}**")
 
 st.subheader("Jam Penyewaan sepeda paling tinggi")
 
