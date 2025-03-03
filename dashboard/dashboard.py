@@ -174,7 +174,19 @@ ax.legend()
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
-st.markdown("Berdasarkan gambar di atas, terlihat bahwa season berpengaruh terhadap jumlah penyewa. Penyewa paling banyak yaitu pada musim gugur(fall), lalu pada musim panas(summer), musim dingin (winter), dan paling sedikit pada musim semi (spring)")
+if not seasonal.empty:
+    max_season = seasonal.loc[(seasonal["registered"] + seasonal["casual"]).idxmax(), "season"]
+    min_season = seasonal.loc[(seasonal["registered"] + seasonal["casual"]).idxmin(), "season"]
+
+    season_dict = {1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"}
+
+    st.markdown(f"Berdasarkan gambar di atas, terlihat bahwa musim berpengaruh terhadap jumlah penyewa. "
+                f"Penyewaan terbanyak terjadi pada musim **{season_dict[max_season]}**, "
+                f"sedangkan yang paling sedikit terjadi pada musim **{season_dict[min_season]}**.")
+else:
+    st.warning("Tidak ada data dalam rentang waktu yang dipilih.")
+
+# st.markdown("Berdasarkan gambar di atas, terlihat bahwa season berpengaruh terhadap jumlah penyewa. Penyewa paling banyak yaitu pada musim gugur(fall), lalu pada musim panas(summer), musim dingin (winter), dan paling sedikit pada musim semi (spring)")
 
 #Caption
 st.caption('Copyright (c) Arfah Hamidah 2024')
