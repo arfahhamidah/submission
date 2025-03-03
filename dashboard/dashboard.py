@@ -93,7 +93,7 @@ labels = ["Casual", "Registered"]
 
 # Membuat Pie Chart menggunakan Matplotlib
 fig, ax = plt.subplots()
-ax.pie(data, labels=labels, autopct='%1.1f%%', colors=['blue', 'green'])
+ax.pie(data, labels=labels, autopct='%1.1f%%', colors=['#ff6361', '#ffa600'])
 
 # Menampilkan grafik di Streamlit
 st.pyplot(fig)
