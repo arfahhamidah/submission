@@ -67,7 +67,7 @@ try:
     st.dataframe(main_df)
 
 except Exception as e:
-    st.warning(f"Terjadi kesalahan dalam pemilihan tanggal: {e}")
+    # st.warning(f"Terjadi kesalahan dalam pemilihan tanggal: {e}")
     main_df = day_df  # Menampilkan semua data jika ada error
 
 # Data farme
