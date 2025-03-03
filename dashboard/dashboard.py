@@ -134,7 +134,7 @@ ax.bar(
     seasonal["season"],
     seasonal["registered"],
     label="Registered",
-    color="tab:#ff6361"
+    color="#ff6361"
 )
 
 # Bar plot untuk "Casual"
@@ -142,7 +142,7 @@ ax.bar(
     seasonal["season"],
     seasonal["casual"],
     label="Casual",
-    color="tab:#ffa600"
+    color="#ffa600"
 )
 
 # Menambahkan judul dan label
