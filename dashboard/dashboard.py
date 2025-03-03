@@ -57,9 +57,13 @@ try:
     if isinstance(selected_dates, tuple) and len(selected_dates) == 2:
         start_date, end_date = selected_dates
 
-        # Jika tanggal awal lebih besar dari tanggal akhir, tampilkan warning
-        if start_date > end_date:
-            raise ValueError("Tanggal awal tidak boleh lebih besar dari tanggal akhir!")
+        # Jika start_date bukan min_date, tampilkan warning
+        if start_date != min_date:
+            st.warning("⚠️ Tanggal awal sebaiknya dimulai dari tanggal terkecil!")
+
+        # Jika end_date bukan max_date, tampilkan warning
+        if end_date != max_date:
+            st.warning("⚠️ Tanggal akhir yang disarankan adalah tanggal terbesar!")
 
         # Filter data berdasarkan rentang waktu
         main_df = day_df[(day_df["dteday"].dt.date >= start_date) & 
@@ -73,6 +77,7 @@ except ValueError as e:
     st.warning(f"⚠️ {str(e)} Menampilkan data default.")
     start_date, end_date = min_date, max_date
     main_df = day_df
+
 
 # Data farme
 count_df = create_count_df(main_df)
