@@ -144,46 +144,48 @@ st.markdown("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pa
 
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
-# Mengelompokkan data berdasarkan season dan registered/casual
-seasonal = seasonal_df.groupby("season")[["registered", "casual"]].sum().reset_index()
-
-# Membuat bar plot
-fig, ax = plt.subplots(figsize=(10, 5))
-
-# Bar plot untuk "Registered"
-ax.bar(
-    seasonal["season"],
-    seasonal["registered"],
-    label="Registered",
-    color="#ffa600"
-)
-
-# Bar plot untuk "Casual"
-ax.bar(
-    seasonal["season"],
-    seasonal["casual"],
-    label="Casual",
-    color="#ff6361"
-)
-
-# Menambahkan judul dan label
-ax.set_title('Total Penyewaan berdasarkan Musim')
-ax.set_xlabel('Season')
-ax.set_ylabel('Total Penyewaan')
-ax.legend()
-
-# Menampilkan plot di Streamlit
-st.pyplot(fig)
 # st.markdown("Berdasarkan gambar di atas, terlihat bahwa season berpengaruh terhadap jumlah penyewa. Penyewa paling banyak yaitu pada musim gugur(fall), lalu pada musim panas(summer), musim dingin (winter), dan paling sedikit pada musim semi (spring)")
 if not seasonal_df.empty:
+    # Mengelompokkan data berdasarkan season dan registered/casual
+    seasonal = seasonal_df.groupby("season")[["registered", "casual"]].sum().reset_index()
+
     # Buat dictionary mapping season
     season_dict = {1: "Spring", 2: "Summer", 3: "Fall", 4: "Winter"}
 
+    # Membuat bar plot
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    # Bar plot untuk "Registered"
+    ax.bar(
+        seasonal["season"],
+        seasonal["registered"],
+        label="Registered",
+        color="#ffa600"
+    )
+
+    # Bar plot untuk "Casual"
+    ax.bar(
+        seasonal["season"],
+        seasonal["casual"],
+        label="Casual",
+        color="#ff6361"
+    )
+
+    # Menambahkan judul dan label
+    ax.set_title('Total Penyewaan berdasarkan Musim')
+    ax.set_xlabel('Season')
+    ax.set_ylabel('Total Penyewaan')
+    ax.legend()
+
+    # Menampilkan plot di Streamlit
+    st.pyplot(fig)
+
+    # Pastikan seasonal tidak kosong setelah groupby
     if not seasonal.empty:
         max_season = seasonal.loc[(seasonal["registered"] + seasonal["casual"]).idxmax(), "season"]
 
         # Pastikan season ada di dictionary sebelum mengaksesnya
-        max_season_name = season_dict.get(max_season)
+        max_season_name = season_dict.get(max_season, "Tidak diketahui")
 
         # Menampilkan hasil dalam Streamlit
         st.markdown(f"Berdasarkan gambar di atas, terlihat bahwa musim berpengaruh terhadap jumlah penyewa. "
