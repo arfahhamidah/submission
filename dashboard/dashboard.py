@@ -125,7 +125,7 @@ st.subheader("Jam Penyewaan sepeda paling tinggi")
 
 # Menghitung total penyewaan berdasarkan jam
 hour_counts = hour_df[hour_df["dteday"].between(str(start_date), str(end_date))].groupby('hr')['cnt'].sum()
-# hour_counts = hour_df.groupby('hr')['cnt'].sum()
+hour_counts = hour_df.groupby('hr')['cnt'].sum()
 
 
 # Membuat barplot menggunakan Seaborn
@@ -142,12 +142,12 @@ ax.set_xticklabels(hour_counts.index, rotation=0)
 
 # Menampilkan plot di Streamlit
 st.pyplot(fig)
-st.markdown(f"Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi terjadi pada jam **{max_hour}:00** dan paling sedikit pada jam **{min_hour}:00**.")
+st.markdown("Berdasarkan gambar di atas, Penyewaan sepeda paling tinggi yaitu pada jam 17.00 dan paling sedikit pada jam 04.00")
 
 st.header("pengaruh season terhadap penyewaan sepeda baik penyewa registered ataupun penyewa casual")
 
 # Mengelompokkan data berdasarkan season dan registered/casual
-seasonal = seasonal_df.groupby("season")[["registered", "casual"]].sum().reset_index()
+seasonal = day_df.groupby("season")[["registered", "casual"]].sum().reset_index()
 
 # Membuat bar plot
 fig, ax = plt.subplots(figsize=(10, 5))
