@@ -150,7 +150,7 @@ if not seasonal_df.empty:
     seasonal = seasonal_df.groupby("season")[["registered", "casual"]].sum().reset_index()
 
     # Buat dictionary mapping season
-    season_dict = {"Spring": "Spring", "Summer": "Summer", "Fall": "Fall", "Winter": "Winter"}
+    season_dict = {"Spring": "semi", "Summer": "panas", "Fall": "gugur", "Winter": "dingin"}
 
     # Membuat bar plot
     fig, ax = plt.subplots(figsize=(10, 5))
