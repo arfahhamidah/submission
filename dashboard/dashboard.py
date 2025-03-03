@@ -57,6 +57,11 @@ try:
         start_date, end_date = selected_dates
     else:
         raise ValueError("Rentang tanggal tidak valid.")
+    
+    # Filter data berdasarkan rentang waktu
+    main_df = day_df[(day_df["dteday"].dt.date >= start_date) & 
+                     (day_df["dteday"].dt.date <= end_date)]
+
 except Exception as e:
     st.warning(f"Terjadi kesalahan dalam pemilihan tanggal: {e}")
     main_df = day_df  # Menampilkan semua data jika ada error
