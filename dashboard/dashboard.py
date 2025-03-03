@@ -119,7 +119,7 @@ ax.legend(labels, loc="best")
 # Menampilkan grafik di Streamlit
 st.pyplot(fig)
 percentages = [f"{(x / sum(data)) * 100:.1f}%" for x in data]
-st.markdown("Berdasarkan gambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah {percentages[1]} dan penyewa casual adalah {percentages[0]}")
+st.markdown(f"Berdasarkan gambar di atas, Penyewaan yang berasal dari penyewa terdaftar adalah **{percentages[1]}** dan penyewa casual adalah **{percentages[0]}**")
 
 st.subheader("Jam Penyewaan sepeda paling tinggi")
 
